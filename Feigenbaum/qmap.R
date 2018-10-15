@@ -5,7 +5,7 @@ q_map <- function(r=1, x_o=runif(1, 0, 1), N=100, burn_in=0, ...)
     x <- array(dim = N)
     x[1] <- x_o
     for (i in 2 : N)
-    x[i] <- r * x[i - 1] * (1 - x[i - 1])
+        x[i] <- r * x[i - 1] * (1 - x[i - 1])
 
     plot(x[(burn_in + 1) : N], type = 'l', xlab = 't', ylab = 'x', ...)
     #################################
@@ -14,7 +14,7 @@ q_map <- function(r=1, x_o=runif(1, 0, 1), N=100, burn_in=0, ...)
     x <- seq(from = 0, to = 1, length.out = 100)
     x_np1 <- array(dim = 100)
     for (i in 1 : length(x))
-    x_np1[i] <- r * x[i] * (1 - x[i])
+        x_np1[i] <- r * x[i] * (1 - x[i])
 
     plot(x, x_np1, type = 'l', xlab = expression(x[t]), ylab = expression(x[t + 1]))
     abline(0, 1)
@@ -31,10 +31,10 @@ q_map <- function(r=1, x_o=runif(1, 0, 1), N=100, burn_in=0, ...)
         }
         else
         {
-            lines(x = c(start,
-            r * start * (1 - start)),
-            y = c(r * start * (1 - start),
-            r * start * (1 - start)))
+            lines(
+                x = c(start, r * start * (1 - start)),
+                y = c(r * start * (1 - start), r * start * (1 - start))
+            )
             vert = TRUE
             start = r * start * (1 - start)
         }
@@ -42,4 +42,5 @@ q_map <- function(r=1, x_o=runif(1, 0, 1), N=100, burn_in=0, ...)
     #################################
 }
 
-q_map(4, 0.2, 400, burn_in=300)
+# For run this
+# q_map(4, 0.2, 400, burn_in=300)
