@@ -65,22 +65,18 @@ server <- function(input, output, session) {
    })
 
    observe({
-     if (input$lambda != input$lambda_v) {
        updateSliderInput(
          session = session,
          inputId = "lambda",
          value = input$lambda_v
        )
-     }
    })
    observe({
-     if (input$lambda != input$lambda_v) {
-         updateSliderInput(
+       updateSliderInput(
          session = session,
          inputId = "lambda_v",
          value = input$lambda
        )
-     }
    })
    observe({
      if (input$trace_length <= input$burn_in) {
