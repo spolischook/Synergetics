@@ -25,7 +25,9 @@ ui <- fluidPage(
                 min = 0,
                 max = 4,
                 step = 0.001,
-                value = 2.923),
+                value = 2.923,
+                animate =
+                    animationOptions(interval = 0.01, loop = TRUE)),
             numericInput("lambda_v",
                 "Lambda value:",
                 value = 2.923),
