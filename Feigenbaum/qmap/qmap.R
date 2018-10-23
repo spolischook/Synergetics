@@ -54,9 +54,9 @@ q_map <- function(r=1, x_o=runif(1, 0, 1), N=100, burn_in=0, ...)
         }
 
         vert=!vert
-    }
+     }
     #################################
 }
 
 # For run this
-# q_map(4, 0.2, 400, burn_in=300)
+# q_map(3.1, 0.2, 1000, burn_in=980)
