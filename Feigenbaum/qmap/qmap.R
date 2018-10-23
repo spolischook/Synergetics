@@ -1,3 +1,10 @@
+library(grid)
+
+nextX <- function(x, r)
+{
+    return (x = r * x * (1 - x))
+}
+
 q_map <- function(r=1, x_o=runif(1, 0, 1), N=100, burn_in=0, ...)
 {
     par(mfrow = c(2, 1), mar = c(4, 4, 1, 2), lwd = 0.6)
@@ -21,9 +28,18 @@ q_map <- function(r=1, x_o=runif(1, 0, 1), N=100, burn_in=0, ...)
 
     start = x_o
     vert = FALSE
-    lines(x = c(start, start), y = c(0, r * start * (1 - start)))
+
+    if (burn_in == 0) {
+        lines(x = c(start, start), y = c(0, r * start * (1 - start)))
+    }
+
     for (i in 1 : (2 * N))
     {
+        if (burn_in > i/2) {
+            start <- nextX(start, r)
+            next
+        }
+
         if (vert)
         {
             lines(x = c(start, start), y = c(start, r * start * (1 - start)))
@@ -34,7 +50,7 @@ q_map <- function(r=1, x_o=runif(1, 0, 1), N=100, burn_in=0, ...)
                 x = c(start, r * start * (1 - start)),
                 y = c(r * start * (1 - start), r * start * (1 - start))
             )
-            start = r * start * (1 - start)
+            start <- nextX(start, r)
         }
 
         vert=!vert
