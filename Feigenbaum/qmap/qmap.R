@@ -27,7 +27,6 @@ q_map <- function(r=1, x_o=runif(1, 0, 1), N=100, burn_in=0, ...)
         if (vert)
         {
             lines(x = c(start, start), y = c(start, r * start * (1 - start)))
-            vert = FALSE
         }
         else
         {
@@ -35,9 +34,10 @@ q_map <- function(r=1, x_o=runif(1, 0, 1), N=100, burn_in=0, ...)
                 x = c(start, r * start * (1 - start)),
                 y = c(r * start * (1 - start), r * start * (1 - start))
             )
-            vert = TRUE
             start = r * start * (1 - start)
         }
+
+        vert=!vert
     }
     #################################
 }
