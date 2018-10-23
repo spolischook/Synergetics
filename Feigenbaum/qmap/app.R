@@ -61,16 +61,9 @@ ui <- fluidPage(
 server <- function(input, output, session) {
 
    output$distPlot <- renderPlot({
-     q_map(input$lambda, input$x0, input$trace_length, burn_in=input$burn_in)
+     q_map(input$lambda_v, input$x0, input$trace_length, burn_in=input$burn_in)
    })
 
-   observe({
-       updateSliderInput(
-         session = session,
-         inputId = "lambda",
-         value = input$lambda_v
-       )
-   })
    observe({
        updateSliderInput(
          session = session,
