@@ -42,13 +42,16 @@ q_map <- function(r=1, x_o=runif(1, 0, 1), N=100, burn_in=0, ...)
 
         if (vert)
         {
-            lines(x = c(start, start), y = c(start, r * start * (1 - start)))
+            lines(
+                x = c(start, start),
+                y = c(start, nextX(start, r))
+            )
         }
         else
         {
             lines(
-                x = c(start, r * start * (1 - start)),
-                y = c(r * start * (1 - start), r * start * (1 - start))
+                x = c(start, nextX(start, r)),
+                y = c(nextX(start, r), nextX(start, r))
             )
             start <- nextX(start, r)
         }
