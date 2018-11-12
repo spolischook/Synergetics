@@ -20,6 +20,13 @@ ui <- fluidPage(
    # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
+            tags$h3("Predefined Lambda"),
+            actionButton("second", "3.222"),
+            actionButton("three", "3.832"),
+            actionButton("four", "3.543"),
+            actionButton("five", "3.74"),
+            actionButton("eight", "3.56"),
+            hr(),
             sliderInput("lambda",
                 "Lambda:",
                 min = 0,
@@ -66,6 +73,26 @@ server <- function(input, output, session) {
      q_map(input$lambda_v, input$x0, input$trace_length, burn_in=input$burn_in)
    })
 
+    observeEvent(input$second, {
+        updateLambda(3.222)
+    })
+
+    observeEvent(input$three, {
+        updateLambda(3.832)
+    })
+
+    observeEvent(input$four, {
+        updateLambda(3.543)
+    })
+
+    observeEvent(input$five, {
+        updateLambda(3.74)
+    })
+
+    observeEvent(input$eight, {
+        updateLambda(3.56)
+    })
+
    observe({
        updateSliderInput(
          session = session,
@@ -75,13 +102,26 @@ server <- function(input, output, session) {
    })
    observe({
      if (input$trace_length <= input$burn_in) {
-       updateSliderInput(
-       session = session,
-       inputId = "burn_in",
-       value = input$trace_length - 5
-     )
+        updateSliderInput(
+           session = session,
+           inputId = "burn_in",
+           value = input$trace_length - 5
+        )
      }
    })
+
+    updateLambda <- function (l) {
+        updateSliderInput(
+         session = session,
+         inputId = "lambda_v",
+         value = l
+       )
+        updateSliderInput(
+         session = session,
+         inputId = "lambda",
+         value = l
+       )
+    }
 }
 
 # Run the application 
