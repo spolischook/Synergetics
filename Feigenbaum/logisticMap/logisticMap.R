@@ -25,4 +25,4 @@ logisticDistribution <- function(start = 2.98, end = 4, by=0.003, iterations=c(8
   plot(Orbit ~ r, pch=".")
 }
 
-logisticDistribution(2.98, 3.5, 0.0001, c(500, 1000))
+# logisticDistribution(2.98, 3.5, 0.0001, c(500, 1000))
