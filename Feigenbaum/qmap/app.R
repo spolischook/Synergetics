@@ -13,9 +13,10 @@ MAX_TRACE <- 1000
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
-
+    withMathJax(),
    # Application title
    titlePanel("Find the value of Feigenbaum equation"),
+    tags$h3("\\(x_{n+1} = \\lambda x_{n}(1-x_{n})\\)"),
 
    # Sidebar with a slider input for number of bins
     sidebarLayout(
